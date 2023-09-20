@@ -30,7 +30,8 @@ public class FirstTestClass {
         System.out.println("This is the first test method");
     }
 
-    @Test
+
+    @RepeatedTest(value = 5, name = "Running repetition: {currentRepetition}. Total is: {totalRepetitions}")
     void secondMethod(){
         System.out.println("This is the second test method");
     }

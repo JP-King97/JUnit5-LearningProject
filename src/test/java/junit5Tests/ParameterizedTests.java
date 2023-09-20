@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ParameterizedTests {
 
@@ -34,14 +36,17 @@ public class ParameterizedTests {
     @ParameterizedTest(name = "Iteration: {index} - value: {arguments}")
     @ValueSource(ints = {1,2,3,4,5,6,7})
     void intValues(int theParameter){
+        assumeTrue(theParameter > 3,"Assumption not accomplished");
         System.out.println("theParameter = " + theParameter);
+
     }
 
     @ParameterizedTest(name = "Iteration: {index} - value: {arguments}")
-    @NullSource
-    @EmptySource
+   // @NullSource
+   // @EmptySource
     @ValueSource(strings = {"First String","Second String"})
     void stringValues(String theParameter){
+        Assumptions.assumeFalse(theParameter.contains("First"),"Assumption not accomplished");
         System.out.println("theParameter = " + theParameter);
     }
 
